@@ -9,7 +9,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+app.use(cors({ origin: "https://notes-app-qrpz.onrender.com", credentials: true }));
 
 console.log("MongoDB URI:", MONGO_URI);
 mongoose.connect(MONGO_URI)
