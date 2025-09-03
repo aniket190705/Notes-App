@@ -10,7 +10,9 @@ function OtpLogin({ setUser, setToken }) {
 
   const sendOtp = async () => {
     try {
-      await axios.post("http://localhost:5000/auth/send-otp", { email });
+      await axios.post(`${import.meta.env.VITE_BASE_URL}/auth/send-otp`, {
+        email,
+      });
       setMessage(`OTP sent to ${email}. Please check your inbox.`);
       setError("");
       setStep(2);
@@ -22,10 +24,13 @@ function OtpLogin({ setUser, setToken }) {
 
   const verifyOtp = async () => {
     try {
-      const res = await axios.post("http://localhost:5000/auth/verify-otp", {
-        email,
-        otp,
-      });
+      const res = await axios.post(
+        `${import.meta.env.VITE_BASE_URL}/auth/verify-otp`,
+        {
+          email,
+          otp,
+        }
+      );
       setToken(res.data.token);
       setUser(res.data.user);
       localStorage.setItem("token", res.data.token);

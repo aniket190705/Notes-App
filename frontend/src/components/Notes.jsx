@@ -6,7 +6,7 @@ function Notes({ token }) {
   const [text, setText] = useState("");
 
   const fetchNotes = async () => {
-    const res = await axios.get("http://localhost:5000/notes", {
+    const res = await axios.get(`${import.meta.env.VITE_BASE_URL}/notes`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     setNotes(res.data);
@@ -15,7 +15,7 @@ function Notes({ token }) {
   const addNote = async () => {
     if (!text.trim()) return;
     await axios.post(
-      "http://localhost:5000/notes",
+      `${import.meta.env.VITE_BASE_URL}/notes`,
       { content: text },
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -24,7 +24,7 @@ function Notes({ token }) {
   };
 
   const deleteNote = async (id) => {
-    await axios.delete(`http://localhost:5000/notes/${id}`, {
+    await axios.delete(`${import.meta.env.VITE_BASE_URL}/notes/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     fetchNotes();

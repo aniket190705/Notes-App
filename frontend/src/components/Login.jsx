@@ -8,10 +8,13 @@ function Login({ setUser, setToken }) {
     try {
       const result = await signInWithPopup(auth, googleProvider);
       const user = result.user;
-      const res = await axios.post("http://localhost:5000/auth/google", {
-        email: user.email,
-        name: user.displayName || user.email.split("@")[0],
-      });
+      const res = await axios.post(
+        `${import.meta.env.VITE_BASE_URL}/auth/google`,
+        {
+          email: user.email,
+          name: user.displayName || user.email.split("@")[0],
+        }
+      );
       setToken(res.data.token);
       setUser(res.data.user);
     } catch (err) {

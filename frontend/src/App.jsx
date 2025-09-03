@@ -23,10 +23,14 @@ function App() {
           setUser(JSON.parse(storedUser));
         } else {
           // If no JWT, request new one from backend
-          const res = await axios.post("http://localhost:5000/auth/google", {
-            email: firebaseUser.email,
-            name: firebaseUser.displayName || firebaseUser.email.split("@")[0],
-          });
+          const res = await axios.post(
+            `${import.meta.env.VITE_BASE_URL}/auth/google`,
+            {
+              email: firebaseUser.email,
+              name:
+                firebaseUser.displayName || firebaseUser.email.split("@")[0],
+            }
+          );
           setUser(res.data.user);
           setToken(res.data.token);
           localStorage.setItem("token", res.data.token);
