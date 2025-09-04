@@ -9,7 +9,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use(cors({ origin: "https://notes-app-alpha-beige.vercel.app/", credentials: true }));
+app.use(cors({ origin: "https://notes-app-alpha-beige.vercel.app", credentials: true }));
 
 console.log("MongoDB URI:", MONGO_URI);
 mongoose.connect(MONGO_URI)
